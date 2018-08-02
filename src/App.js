@@ -5,6 +5,11 @@ import Navigation from './components/Navigation/Navigation';
 import Logo from './components/Logo/Logo';
 import Rank from './components/Rank/Rank';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
+import Clarifai from 'clarifai';
+
+const app = new Clarifai.App({
+ apiKey: 'YOUR_API_KEY'
+});
 
 const particlesOptions = {
   particles: {
@@ -38,6 +43,17 @@ class App extends Component {
 
   onButtonSubmit = () => {
     console.log('click');
+    app.models.predict(
+      "a403429f2ddf4b49b307e318f00e528b", 
+      "https://samples.clarifai.com/face-det.jpg")
+      .then(
+      function(response) {
+        console.log(response);
+      },
+      function(err) {
+        // there was an error
+      }
+    );
   }
 
   render () {
