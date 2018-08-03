@@ -36,9 +36,14 @@ class App extends Component {
     this.state = {
       input: '',
       imageUrl: '',
+      box: {}
     }
   }
   
+  calculateFaceLocation = (data) => {
+    const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;
+  }
+
   onInputChange = (event) => {
     this.setState({input: event.target.value});
   }
