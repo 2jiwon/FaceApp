@@ -45,7 +45,6 @@ class App extends Component {
            const image = document.getElementById('inputImage');
            const width = Number(image.width);
           const height = Number(image.height);
-    console.log(width, height);
     return {
         leftCol: clarifaiFace.left_col * width,
          topRow: clarifaiFace.top_row  * height,
@@ -68,7 +67,7 @@ class App extends Component {
       .predict(
         Clarifai.FACE_DETECT_MODEL,
         this.state.input)
-      .then(response => this.calculateFaceLocation(response))
+      .then(response => this.displayFaceBox(this.calculateFaceLocation(response)))
       .catch(err => console.log(err));
   }
 
