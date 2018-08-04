@@ -4,6 +4,7 @@ import './App.css';
 import Navigation from './components/Navigation/Navigation';
 import Logo from './components/Logo/Logo';
 import Signin from './components/Signin/Signin';
+import Register from './components/Register/Register';
 import Rank from './components/Rank/Rank';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
@@ -83,10 +84,8 @@ class App extends Component {
         <Particles className='particles' params={particlesOptions} />
         <Navigation onRouteChange={this.onRouteChange} />
         <Logo />
-        { this.state.route === 'signin' 
-            ? <Signin onRouteChange={this.onRouteChange} />
-            : 
-            <div>
+        { this.state.route === 'home' 
+            ? <div>
               <Rank />
               <ImageLinkForm 
                 onInputChange={this.onInputChange} 
@@ -94,7 +93,12 @@ class App extends Component {
               <FaceRecognition 
                 box={this.state.box}
                 imageUrl={this.state.imageUrl} />
-            </div>
+              </div>
+            : (
+                this.state.route === 'signin'
+                ? <Signin onRouteChange={this.onRouteChange} />
+                : <Register onRouteChange={this.onRouteChange} />
+              )
         }
       </div>
     );
