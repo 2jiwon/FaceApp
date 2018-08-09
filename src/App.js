@@ -11,7 +11,7 @@ import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import Clarifai from 'clarifai';
 
 const app = new Clarifai.App({
- apiKey: 'YOUR_API_KEY'
+  apiKey: 'YOUR_API_KEY'
 });
 
 const particlesOptions = {
@@ -98,6 +98,10 @@ class App extends Component {
               id: this.state.user.id
             })
           })
+            .then(response => response.json())
+            .then(count => {
+              this.setState(Object.assign(this.state.user, { entries: count }))
+            })
         }
         this.displayFaceBox(this.calculateFaceLocation(response))
       })
